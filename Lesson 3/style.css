@@ -1101,7 +1101,7 @@ body {
         border: 1px solid #f16d7f; }
 
 .checkout_drop {
-  display: none;
+  display: flex;
   border-radius: 5px;
   background-color: #ffffff;
   border: 1px solid #ececec;
