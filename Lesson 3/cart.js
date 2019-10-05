@@ -17,7 +17,7 @@ function sendCartRequest(url) {
     });
 }
 
-class cartItemsList {
+class CartItemsList {
     constructor() {
         this.cartItems = [];
     }
@@ -62,7 +62,7 @@ class cartItem {
     }
 }
 
-const cartItems = new cartItemsList();
+const cartItems = new CartItemsList();
 cartItems.fetchItems().then(() => {
     document.querySelector('.checkout_drop_menu').innerHTML = cartItems.render();
 });
