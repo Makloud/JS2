@@ -54,7 +54,7 @@ class Item {
                  data-title="${this.title}"
                  data-price="${this.price}"
                  data-img="${this.img}"
-                 class="add_item"><img class="add_item_img" src="img/add_cart.svg" alt="cart"> Add to cart</buttona>
+                 class="add_item"><img class="add_item_img" src="img/add_cart.svg" alt="cart"> Add to cart</button>
                 <a href="#" class="ref_item"><img class="ref_item_img" src="img/ref.svg" alt="ref"></a>
                 <a href="#" class="favor_item"><img class="favor_item_img" src="img/favor.svg" alt="favor"></a>
             </div>`
@@ -122,6 +122,7 @@ class Cart {
         });
 
         const idx = this.items.findIndex(entity => entity.id === id);
+      console.log(idx);
       this.items[idx].qty = newQty;
     }
 
@@ -174,7 +175,9 @@ cart.fetchItems().then(() => {
 
 document.querySelector('.checkout_drop_menu').addEventListener('change', (event) => {
   if(event.target.classList.contains('qty')) {
+    console.log(event.target.classList);
     const $parent = event.target.parentElement;
+    console.log($parent);
     if(!cart.update($parent.dataset.id, +event.target.value)) {
       event.target.value = 1;
     }
@@ -184,8 +187,11 @@ document.querySelector('.checkout_drop_menu').addEventListener('change', (event)
 
 document.querySelector('.items').addEventListener('click', (event) => {
   if(event.target.classList.contains('add-item')) {
+    console.log(event.target.classList);
     const id = event.target.dataset.id;
+    console.log(id);
     const $item = document.querySelector(`.checkout_drop_menu li[data-id="${id}"]`);
+    console.log($item);
     if($item) {
       const $currentQty = $item.querySelector('.qty');
       $currentQty.value = +$currentQty.value + 1;

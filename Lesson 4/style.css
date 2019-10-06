@@ -787,8 +787,8 @@ body {
   line-height: 39px;
   display: none;
   position: absolute;
-  /*top: 145px;*/
-  left: 65px; /*136*/
+  top: 145px;
+  left: 136px;
   text-decoration: none; }
 
 .item:hover .favor_item {
@@ -812,8 +812,8 @@ body {
   line-height: 39px;
   display: none;
   position: absolute;
-  /*top: 145px;*/
-  /*left: 70px;*/
+  top: 145px;
+  left: 70px;
   text-decoration: none; }
 
 .item:hover .ref_item {
