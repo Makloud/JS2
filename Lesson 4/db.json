@@ -1,0 +1,74 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "title": "Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Beard Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Beard Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Beard Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Beard Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new7.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new8.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Beard Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new9.jpg"
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "title": "Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new1.jpg",
+      "qty": "1"
+    },
+    {
+      "id": 2,
+      "title": "Beard Mango People T-shirt",
+      "price": "52.00",
+      "img": "img/new%20arrivals/new2.jpg",
+      "qty": "3"
+    }
+  ]
+}

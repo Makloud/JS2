@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style/style.css"/>
+</head>
+<body>
+<form action="#" method="post" class="some" id="myform">
+    <div>
+        <label>
+            Name <br>
+            <input type="text" name="name" id="name">
+        </label>
+    </div>
+    <div>
+        <label>
+            Phone <br>
+            <input type="tel" name="phone" id="phone">
+        </label>
+    </div>
+    <div>
+        <label>
+            Email <br>
+            <input type="email" name="email" id="email">
+        </label>
+    </div>
+    <button id="val-btn">Submit</button>
+</form>
+<script src="js/js.js"></script>
+<script>
+    window.onload = () => {
+        document.getElementById('myform').addEventListener('submit', event => {
+            let valid = new Validator('myform');
+            if(!valid.valid){
+                event.preventDefault();
+            }
+        })
+    }
+</script>
+</body>
+</html>
