@@ -49,12 +49,12 @@ class Item {
                     <a href="single%20page.html" class="item_name">${this.title}</a>
                     <p class="item_price">$${this.price}<img class="item_star" src="img/star.png" alt="star"></p>
                 </div>
-                <button 
+                <a  href="#"
                  data-id="${this.id}"
                  data-title="${this.title}"
                  data-price="${this.price}"
                  data-img="${this.img}"
-                 class="add_item"><img class="add_item_img" src="img/add_cart.svg" alt="cart"> Add to cart</button>
+                 class="add_item"><img class="add_item_img" src="img/add_cart.svg" alt="cart"> Add to cart</a>
                 <a href="#" class="ref_item"><img class="ref_item_img" src="img/ref.svg" alt="ref"></a>
                 <a href="#" class="favor_item"><img class="favor_item_img" src="img/favor.svg" alt="favor"></a>
             </div>`
@@ -186,7 +186,9 @@ document.querySelector('.checkout_drop_menu').addEventListener('change', (event)
 });
 
 document.querySelector('.items').addEventListener('click', (event) => {
-  if(event.target.classList.contains('add-item')) {
+  event.preventDefault();
+  console.log(event);
+  if(event.target.classList.contains('.add-item')) {
     console.log(event.target.classList);
     const id = event.target.dataset.id;
     console.log(id);
