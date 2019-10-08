@@ -188,7 +188,7 @@ document.querySelector('.checkout_drop_menu').addEventListener('change', (event)
 document.querySelector('.items').addEventListener('click', (event) => {
   event.preventDefault();
   console.log(event);
-  if(event.target.classList.contains('.add-item')) {
+  if(event.target.classList.contains('.add_item')) {
     console.log(event.target.classList);
     const id = event.target.dataset.id;
     console.log(id);
