@@ -136,8 +136,8 @@ class Cart {
                                 <div class="cart__text">
                                     <div class="cart__text_name">${item.title}</div>
                                     <div class="cart__text_stars"><img src="img/checkoutstars.jpg" alt="stars"></div>
-                                    <div class="cart__text_count">
-                                    <input class="qty" type="number" value="${item.qty}" />x $${item.price}</div>
+                                    <div data-id="${item.id}" class="cart__text_count">
+                                    <input data-id="${item.id}" class="qty" type="number" value="${item.qty}" />x $${item.price}</div>
                                 </div>
                                 <div class="cart__delete"><img src="img/delete.png" alt="delete"></div>
                             </div>
@@ -175,10 +175,8 @@ cart.fetchItems().then(() => {
 
 document.querySelector('.checkout_drop_menu').addEventListener('change', (event) => {
   if(event.target.classList.contains('qty')) {
-    console.log(event.target.classList);
     const $parent = event.target.parentElement;
-    console.log($parent);
-    if(!cart.update($parent.dataset.id, +event.target.value)) {
+     if(!cart.update($parent.dataset.id, +event.target.value)) {
       event.target.value = 1;
     }
     document.querySelector('.total').innerHTML = cart.total();
@@ -188,12 +186,9 @@ document.querySelector('.checkout_drop_menu').addEventListener('change', (event)
 document.querySelector('.items').addEventListener('click', (event) => {
   event.preventDefault();
   console.log(event);
-  if(event.target.classList.contains('.add_item')) {
-    console.log(event.target.classList);
+  if(event.target.classList.contains('add_item')) {
     const id = event.target.dataset.id;
-    console.log(id);
     const $item = document.querySelector(`.checkout_drop_menu li[data-id="${id}"]`);
-    console.log($item);
     if($item) {
       const $currentQty = $item.querySelector('.qty');
       $currentQty.value = +$currentQty.value + 1;

@@ -57,18 +57,18 @@
   ],
   "cart": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Mango People T-shirt",
       "price": "52.00",
       "img": "img/new%20arrivals/new1.jpg",
-      "qty": "1"
+      "qty": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Beard Mango People T-shirt",
       "price": "52.00",
       "img": "img/new%20arrivals/new2.jpg",
-      "qty": "3"
+      "qty": 3
     }
   ]
 }
