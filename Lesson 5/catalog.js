@@ -1,69 +1,99 @@
 const app = new Vue({
-  el: '#root',
-  data: {
-    items: [],
-    filteredItems: [],
-    cart: [],
-    query: '',
-    showCart: false,
-  },
-  methods: {
-    handleSearchClick(){
-        this.filteredItems = this.items.filter((item) => {
-            const regexp = new RegExp(this.query, 'i');
-            return regexp.test(item.title);
-        });
+    el: '#root',
+    data: {
+        items: [],
+        filteredItems: [],
+        cart: [],
+        query: '',
+        showCart: false,
     },
-    handleBuyClick(item) {
-      fetch('/cart', {
-        method: 'POST',
-        body: JSON.stringify({ ...item, qty: 1 }),
-        headers: {
-          'Content-type': 'application/json',
+    methods: {
+        handleSearchClick() {
+            this.filteredItems = this.items.filter((item) => {
+                const regexp = new RegExp(this.query, 'i');
+                return regexp.test(item.title);
+            });
         },
-      }).then(() => {
-        this.cart.push({ ...item, qty: 1 });
-      });
-    },
-    handleDeleteClick(id) {
-      fetch(`/cart/${id}`, {
-        method: 'DELETE',
-      }).then(() => {
-        this.cart = this.cart.filter((item) => item.id !== id);
-      });
-    },
-      filter(query) {
-          this.filteredItems = this.items.filter((item) => {
-              const regexp = new RegExp(query, 'i');
+        handleBuyClick(item) {
+            const cartItem = this.cart.find((cartItem) => +cartItem.id === +item.id);
+            if (cartItem) {
+                fetch(`/cart/${item.id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({qty: cartItem.qty + 1}),
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }).then(() => {
+                    cartItem.qty++;
+                });
+            } else {
+                fetch('/cart', {
+                    method: 'POST',
+                    body: JSON.stringify({...item, qty: 1}),
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                }).then(() => {
+                    this.cart.push({...item, qty: 1});
+                });
+            }
+        },
+        handleDeleteClick(id) {
+            const cartItem = this.cart.find((cartItem) => +cartItem.id === +id);
 
-              return regexp.test(item.title);
-          });
-      }
-  },
-  mounted() {
-    fetch('/goods')
-        .then(response => response.json())
-        .then((goods) => {
-          this.items = goods;
-          this.filteredItems = goods;
-        });
+            if (cartItem && cartItem.qty > 1) {
+                fetch(`/cart/${id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({qty: cartItem.qty - 1}),
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }).then(() => {
+                    cartItem.qty--;
+                });
+            } else {
 
-    fetch('/cart')
-        .then(response => response.json())
-        .then((cart) => {
-          this.cart = cart;
-        });
-  },
-  computed: {
-    total() {
-      return this.cart.reduce((acc, item) => acc + item.qty * item.price, 0);
+                if (confirm('Вы действительно хотите удалить последний товар?')) {
+                    fetch(`/cart/${id}`, {
+                        method: 'DELETE',
+                    }).then(() => {
+                        this.cart = this.cart.filter((item) => item.id !== id);
+                    });
+                }
+            }
+        },
+        filter(query) {
+            this.filteredItems = this.items.filter((item) => {
+                const regexp = new RegExp(query, 'i');
+
+                return regexp.test(item.title);
+            });
+        }
+    },
+    mounted() {
+        fetch('/goods')
+            .then(response => response.json())
+            .then((goods) => {
+                this.items = goods;
+                this.filteredItems = goods;
+            });
+
+        fetch('/cart')
+            .then(response => response.json())
+            .then((cart) => {
+                this.cart = cart;
+            });
+    },
+    computed: {
+        total() {
+            return this.cart.reduce((acc, item) => acc + item.qty * item.price, 0);
+        }
     }
-  }
 });
 
 
 /**
-class ItemsList {
+ class ItemsList {
   constructor() {
     this.items = [];
     this.filteredItems = [];
@@ -97,7 +127,7 @@ class ItemsList {
   }
 }
 
-class Item {
+ class Item {
   constructor(id, title, price, img) {
     this.price = price;
     this.title = title;
@@ -126,7 +156,7 @@ class Item {
   // }
 }
 
-class Cart {
+ class Cart {
   constructor() {
     this.items = [];
     this.element = null;
@@ -227,18 +257,18 @@ class Cart {
   }
 }
 
-const items = new ItemsList();
-items.fetchItems().then(() => {
+ const items = new ItemsList();
+ items.fetchItems().then(() => {
   document.querySelector('.items').innerHTML = items.render();
 });
 
-const cart = new Cart();
-cart.fetchItems().then(() => {
+ const cart = new Cart();
+ cart.fetchItems().then(() => {
   document.querySelector('.checkout_drop_menu').appendChild(cart.render());
   document.querySelector('.total').innerHTML = cart.total();
 });
 
-document.querySelector('.checkout_drop_menu').addEventListener('change', (event) => {
+ document.querySelector('.checkout_drop_menu').addEventListener('change', (event) => {
   if(event.target.classList.contains('qty')) {
     const $parent = event.target.parentElement;
      if(!cart.update($parent.dataset.id, +event.target.value)) {
@@ -248,7 +278,7 @@ document.querySelector('.checkout_drop_menu').addEventListener('change', (event)
   }
 });
 
-document.querySelector('.items').addEventListener('click', (event) => {
+ document.querySelector('.items').addEventListener('click', (event) => {
   event.preventDefault();
   console.log(event);
   if(event.target.classList.contains('add_item')) {
@@ -265,7 +295,7 @@ document.querySelector('.items').addEventListener('click', (event) => {
   }
 });
 
-document.querySelector('[name="query"]').addEventListener('input', (event) => {
+ document.querySelector('[name="query"]').addEventListener('input', (event) => {
   const query = event.target.value;
   items.filter(query);
   document.querySelector('.items').innerHTML = items.render();
