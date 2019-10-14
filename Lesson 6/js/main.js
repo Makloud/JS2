@@ -48,7 +48,7 @@ const ItemsListComponent = {
 };
 
 const CartItemComponent = {
-    props: ['id', 'title', 'price', 'img', qty],
+    props: ['id', 'title', 'price', 'img', 'qty'],
     template: `<div v-if="cart.length !==0">
                     <div class="checkout_drop_menu">
                         <ul>
@@ -90,7 +90,7 @@ const CartItemComponent = {
 };
 
 const CartItemsListComponent = {
-    props: [cartitems],
+    props: ['cartitems'],
     template: `<div>
                     <a class="checkout" href=# @click="showCart = !showCart"><img class="cart" src="img/cart.svg" alt="cart"></a>
             <div class="checkout_drop" v-show="showCart">
