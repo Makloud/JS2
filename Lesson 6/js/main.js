@@ -101,30 +101,6 @@ const CartItemsListComponent = {
             </div>
                 </div>`,
     methods: {
-        handleBuyClick(item) {
-            const cartItem = this.cart.find((cartItem) => +cartItem.id === +item.id);
-            if (cartItem) {
-                fetch(`/cart/${item.id}`, {
-                    method: 'PATCH',
-                    body: JSON.stringify({qty: cartItem.qty + 1}),
-                    headers: {
-                        'Content-type': 'application/json',
-                    }
-                }).then(() => {
-                    cartItem.qty++;
-                });
-            } else {
-                fetch('/cart', {
-                    method: 'POST',
-                    body: JSON.stringify({...item, qty: 1}),
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                }).then(() => {
-                    this.cart.push({...item, qty: 1});
-                });
-            }
-        },
         handleDeleteClick(id) {
             const cartItem = this.cart.find((cartItem) => +cartItem.id === +id);
 
@@ -155,6 +131,9 @@ const CartItemsListComponent = {
     },
 };
 
+const FilterComponent ={
+
+};
 
 const app = new Vue({
     el: '#root',
@@ -171,6 +150,30 @@ const app = new Vue({
                 const regexp = new RegExp(this.query, 'i');
                 return regexp.test(item.title);
             });
+        },
+        handleBuyClick(item) {
+            const cartItem = this.cart.find((cartItem) => +cartItem.id === +item.id);
+            if (cartItem) {
+                fetch(`/cart/${item.id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({qty: cartItem.qty + 1}),
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }).then(() => {
+                    cartItem.qty++;
+                });
+            } else {
+                fetch('/cart', {
+                    method: 'POST',
+                    body: JSON.stringify({...item, qty: 1}),
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                }).then(() => {
+                    this.cart.push({...item, qty: 1});
+                });
+            }
         },
         filter(query) {
             this.filteredItems = this.items.filter((item) => {
