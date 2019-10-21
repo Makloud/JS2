@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{18:function(e,t,a){"use strict";a.r(t);var n=function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("Catalog page")])};n._withStripped=!0;var o={name:"Catalog"},s=a(0),i=Object(s.a)(o,n,[],!1,null,null,null);i.options.__file="src/components/pages/CatalogePage.vue";t.default=i.exports}}]);

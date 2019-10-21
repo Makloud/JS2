@@ -23,13 +23,17 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test:/\.scss$/,
+        test:/\.(scss|sass)$/,
         use:[
             'vue-style-loader',
             'css-loader',
             'sass-loader'
         ]
-      }
+      },
+      {
+        test:/\.jpg$/,
+        loader: 'file-loader',
+      },
     ]
   },
   plugins: [
