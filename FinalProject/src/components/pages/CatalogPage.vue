@@ -1,5 +1,167 @@
 <template>
-    <div>Catalog page</div>
+    <div>
+        <div class="sidebar container">
+            <ul class="sidebar_menu">
+                <li class="sidebar_menu_list"><a href="#" class="sidebar_menu_link"><span class="sb_head"><span class="sb_txt">Category</span>
+            <span class="sb_triang"><i class="fas fa-caret-down"></i></span></span></a>
+                    <div class="sidebar_drop">
+                        <div class="drop_colomn">
+                            <ul class="drop_menu">
+                                <li><a href="#" class="drop_list">New Arrivals </a></li>
+                                <li><a href="#" class="drop_list">Accessories</a></li>
+                                <li><a href="#" class="drop_list">Bags</a></li>
+                                <li><a href="#" class="drop_list">Denim</a></li>
+                                <li><a href="#" class="drop_list">Hoodies & Sweatshirts</a></li>
+                                <li><a href="#" class="drop_list">Jackets & Coats</a></li>
+                                <li><a href="#" class="drop_list">Pants</a></li>
+                                <li><a href="#" class="drop_list">Polos</a></li>
+                                <li><a href="#" class="drop_list">Shirts</a></li>
+                                <li><a href="#" class="drop_list">Shoes</a></li>
+                                <li><a href="#" class="drop_list">Shorts</a></li>
+                                <li><a href="#" class="drop_list">Sweaters & Knits</a></li>
+                                <li><a href="#" class="drop_list">T-Shirts</a></li>
+                                <li><a href="#" class="drop_list">Tanks</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="sidebar_menu_list"><a href="#" class="sidebar_menu_link"><span class="sb_head"><span class="sb_txt">BRAND</span> <span
+                        class="sb_tiang"><i class="fas fa-caret-down"></i></span></span></a></li>
+                <li class="sidebar_menu_list"><a href="#" class="sidebar_menu_link"><span class="sb_head"><span class="sb_txt">dESIGNER</span> <span
+                        class="sb_tiang"><i class="fas fa-caret-down"></i></span></span></a>
+                    <div class="sidebar_drop">
+                        <div class="drop_colomn">
+                            <ul class="drop_menu">
+                                <li><a href="#" class="drop_list">New Arrivals </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="top_filter">
+                <div class="filter_chek">
+                    <div class="trending">
+                        <div class="filter_chek_text">Trending now</div>
+                        <div class="filter_chek_names">
+                            <ul class="trends">
+                                <li><a href="#" class="trend">Bohemian</a></li>
+                                <li><a href="#" class="trend">Floral</a></li>
+                                <li><a href="#" class="trend">Lace</a></li>
+                            </ul>
+                            <ul class="trends">
+                                <li><a href="#" class="trend">Floral</a></li>
+                                <li><a href="#" class="trend">Lace</a></li>
+                                <li><a href="#" class="trend">Bohemian</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="size">
+                        <div class="filter_chek_text">Size</div>
+                        <div class="filter_chek_names">
+                            <form class="form_select" action="#">
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="xxs"/>
+                                    <label for="xxs">xxs</label>
+                                </div>
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="xs"/>
+                                    <label for="xs">xs</label>
+                                </div>
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="s"/>
+                                    <label for="s">s</label>
+                                </div>
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="m"/>
+                                    <label for="m">m</label>
+                                </div>
+                            </form>
+                            <form class="form_select" action="#">
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="l"/>
+                                    <label for="l">L</label>
+                                </div>
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="xl"/>
+                                    <label for="xl">xL</label>
+                                </div>
+                                <div class="form_select_checkbox">
+                                    <input type="checkbox" id="xxl"/>
+                                    <label for="xxl">xxL</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="filter_chek_text">price</div>
+                        <div class="filter_chek_names">
+                            Ползунок через JS?
+                        </div>
+                    </div>
+                </div>
+                <div class="sort">
+                    <div class="sort_by">
+                        <p>Sort By</p>
+                    </div>
+                    <div class="name_select">
+                        <select name="trend" id="trend">
+                            <option selected value="Name" disabled>Name</option>
+                            <option value="Bohemian">Bohemian</option>
+                            <option value="Floral">Floral</option>
+                            <option value="Lace">Lace</option>
+                        </select>
+                    </div>
+                    <div class="show">Show</div>
+                    <div class="show_count">
+                        <select name="count" id="cout">
+                            <option selected value="Count" disabled>Count</option>
+                            <option value="03">03</option>
+                            <option value="06">06</option>
+                            <option value="09">09</option>
+                        </select>
+                    </div>
+                </div>
+                <items-list-component :items="filteredItems" @buy="handleBuyClick"></items-list-component>
+            </div>
+        </div>
+        <div class="pagination container">
+            <div class="pagination_pages">
+                Эти ссылки через JS?
+            </div>
+            <div class="pagination_view_all"><a class="view_all" href="#">View All</a></div>
+        </div>
+        <div class="bonuses">
+            <div class="container all_bonuses">
+                <div class="bonuses_small">
+                    <div class="svg"><img class="hot_svg" src="img/Delivery.svg" alt="delivery"></div>
+                    <div class="bonuses_text">
+                        <div class="bonuses_text_big">Free Delivery</div>
+                        <div class="bonuses_text_small">Worldwide delivery on all. Authorit tively morph next-generation innov
+                            tion with extensive models.
+                        </div>
+                    </div>
+                </div>
+                <div class="bonuses_small">
+                    <div class="svg"><img class="hot_svg" src="img/Sales.svg" alt="delivery"></div>
+                    <div class="bonuses_text">
+                        <div class="bonuses_text_big">Sales & discounts</div>
+                        <div class="bonuses_text_small">Worldwide delivery on all. Authorit tively morph next-generation innov
+                            tion with extensive models.
+                        </div>
+                    </div>
+                </div>
+                <div class="bonuses_small">
+                    <div class="svg"><img class="hot_svg" src="img/quality.svg" alt="delivery"></div>
+                    <div class="bonuses_text">
+                        <div class="bonuses_text_big">Quality assurance</div>
+                        <div class="bonuses_text_small">Worldwide delivery on all. Authorit tively morph next-generation innov
+                            tion with extensive models.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>

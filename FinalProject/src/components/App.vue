@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <div class="Header">Header</div>
+    <div id="root">
+<!--        <Header />-->
+        <Navigation />
+        <BreadCrumb />
         <router-view />
         <Footer />
     </div>
@@ -9,12 +11,16 @@
 <script>
     import Header from './elements/Header.vue'
     import Footer from './elements/Footer.vue'
+    import Navigation from './elements/Navigation.vue'
+    import BreadCrumb from "./elements/BreadCrumb.vue"
 
     export default{
         name: 'App',
         components: {
             Header,
             Footer,
+            Navigation,
+            BreadCrumb,
         }
     }
 </script>
