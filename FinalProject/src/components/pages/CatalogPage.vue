@@ -167,7 +167,59 @@
 <script>
     export default{
         name: 'Catalog',
+        components:{
+            "items-list-component": ItemsListComponent,
+        }
     }
+    const ItemComponent = {
+        props: ['id', 'title', 'price', 'img'],
+        template: `<div class="item">
+                <a href="single%20page.html">
+                    <img class="item_img" :src="img" alt="item">
+                </a>
+                <div class="item_text">
+                    <a href="single%20page.html" class="item_name">{{title}}</a>
+                    <p class="item_price">\${{price}}<img class="item_star" src="img/star.png" alt="star"></p>
+                </div>
+                <a  href="#"
+                    class="add_item" @click="handleBuyClick(item)"><img class="add_item_img" src="img/add_cart.svg" alt="cart"> Add to cart</a>
+                <a href="#" class="ref_item"><img class="ref_item_img" src="img/ref.svg" alt="ref"></a>
+                <a href="#" class="favor_item"><img class="favor_item_img" src="img/favor.svg" alt="favor"></a>
+            </div>`,
+        methods: {
+            handleBuyClick(id) {
+                this.$emit('buy', id);
+            }
+        }
+    };
+
+    const ItemsListComponent = {
+        props: ['items'],
+        template: `<div class="items prod_cont">
+          <item-component
+          v-if="items.length"
+          v-for="item in items"
+          :key="item.id"
+          :id="item.id"
+          :title="item.title"
+          :price="item.price"
+          :img="item.img"
+          @buy="handleBuyClick(item)"
+        ></item-component>
+        <div v-if="!items.length">
+        Список товаров пуст
+      </div>
+      </div>`,
+        methods: {
+            handleBuyClick(item) {
+                this.$emit('buy', item);
+            }
+        },
+        components: {
+            'item-component': ItemComponent,
+        },
+    };
+
 </script>
 
 <style lang="scss">

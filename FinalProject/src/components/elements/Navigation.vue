@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <ul class="menu">
-            <li class="menu_list"><a href="index2.html" class="menu_link">Home</a></li>
+            <li class="menu_list"><router-link to="/" class="menu_link">Home</router-link></li><!--<a href="index.html" class="menu_link">Home</a>-->
             <li class="menu_list"><a href="#" class="menu_link">Man</a>
                 <div class="drop">
                     <div class="drop_column">
                         <h3 class="drop_h3">Men</h3>
                         <ul class="drop_menu">
-                            <li><a href="product.html" class="drop_list">New Arrivals </a></li>
+                            <li><router-link to="/catalog" class="drop_list">New Arrivals</router-link></li>
+                                <!--<a href="product.html" class="drop_list">New Arrivals </a>-->
                         </ul>
                     </div>
                 </div>
