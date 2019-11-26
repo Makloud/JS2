@@ -109,7 +109,6 @@
         width: 1140px;
         margin: 0 auto; }
 
-
     .red_symbol {
         color: #f16d7f; }
 
